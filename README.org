@@ -1,1 +1,42 @@
 * TCP_NODELAY demo
+
+This repository contains pratical examples [[https://github.com/mauricioabreu/garden/blob/main/tcp_nodelay.org][for one of my notes about TCP]]
+
+** Running
+
+We need the go compiler installed.
+
+First we can start the server:
+
+~go run server/main.go~
+
+Before running the client, we need to start inspecting TCP packets. For this task we can use the /tcpdump/ tool
+
+~sudo tcpdump -X -i lo0 'port 8080'~
+
+About the TCP flags:
+
+- -X -> print the data of the packet
+- -i -> network interface to be inspected (/lo/)
+- 'port 8000' is server port we connect
+
+Choose the appropriate network interface for your operating system.
+
+And finally, we run the client:
+
+~go run client/main.go~
+
+Save the /tcpdump/ output.
+
+Re-run the program but this time set ~conn.SetNoDelay(false)~ to /true/, like this
+
+~conn.SetNoDelay(true)~
+
+Save the /tcpump/ output again.
+
+** Checking the output
+
+Now it is time to compare the outputs. Write down the differences you can see. What did you notice?
+
+When ~SetNoDelay~ is /true/ it sends the data everytime you write bytes in the connection.
+When it is /false/ the program sends the word /test/ multiple times because it buffered the data before flushing.
