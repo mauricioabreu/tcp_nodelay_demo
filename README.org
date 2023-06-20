@@ -1,6 +1,6 @@
 * TCP_NODELAY demo
 
-This repository contains pratical examples [[https://github.com/mauricioabreu/garden/blob/main/tcp_nodelay.org][for one of my notes about TCP]]
+This repository contains pratical examples [[https://www.samambaia.dev/network/tcp-nodelay/][for one of my notes about TCP]]
 
 ** Running
 
